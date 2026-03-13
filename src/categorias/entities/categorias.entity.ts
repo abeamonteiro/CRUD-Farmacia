@@ -1,19 +1,14 @@
-import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Produtos } from '../../produtos/entities/produtos.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tb_categorias' })
+// eslint-disable-next-line prettier/prettier
 export class Categorias {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
-  @IsNotEmpty()
-  @Column({ length: 255, nullable: false })
-  tipo: string;
+  @Column({ length: 100 })
+  nome!: string;
 
-  @Column({ length: 500, nullable: true })
-  descricao: string;
-
-  @ManyToOne(() => Produtos, (produtos) => produtos.categoria)
-  produto: Produtos[];
+  @Column({ length: 255 })
+  descricao!: string;
 }
