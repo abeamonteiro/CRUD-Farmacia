@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Produtos } from '../../produtos/entities/produtos.entity';
 
 @Entity({ name: 'tb_categorias' })
-// eslint-disable-next-line prettier/prettier
 export class Categorias {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -11,4 +11,7 @@ export class Categorias {
 
   @Column({ length: 255 })
   descricao!: string;
+
+  @OneToMany(() => Produtos, (produto) => produto.categoria)
+  produtos!: Produtos[];
 }

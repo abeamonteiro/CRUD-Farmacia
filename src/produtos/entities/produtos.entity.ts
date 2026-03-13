@@ -7,27 +7,26 @@ import { Categorias } from '../../categorias/entities/categorias.entity';
 export class Produtos {
  
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @IsNotEmpty()
   @Column({ length: 255, nullable: false })
-  nome: string;
+  nome!: string;
 
   @Column({ length: 500, nullable: true })
-  descricao: string;
+  descricao!: string;
 
   @IsNotEmpty()
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
-  preco: number;
+  preco!: number;
 
   @IsNotEmpty()
   @Column({ type: 'boolean', nullable: false })
-  em_estoque: boolean;
+  em_estoque!: boolean;
 
-  @ManyToOne(() => Categorias, (categoria) => categoria.produto, {
-    onDelete: 'CASCADE',
-    nullable: false,
-  })
+ @ManyToOne(() => Categorias, (categoria) => categoria.produtos, {
+  onDelete: 'CASCADE'
+})
   @JoinColumn({ name: 'categoria_id' })
-  categoria: Categorias;
+  categoria!: Categorias
 }
